@@ -52,6 +52,11 @@ const configSchema = z.object({
     .positive()
     .default(5000)
     .describe("Polling interval in milliseconds when no new ledgers"),
+
+  allowedOrigins: z
+    .string()
+    .default("http://localhost:3000")
+    .transform((val) => val.split(",").map((s) => s.trim())),
 });
 
 export type Config = z.infer<typeof configSchema>;
@@ -70,6 +75,7 @@ function loadConfig(): Config {
     logLevel: process.env.LOG_LEVEL,
     cursorCommitInterval: process.env.CURSOR_COMMIT_INTERVAL,
     pollIntervalMs: process.env.POLL_INTERVAL_MS,
+    allowedOrigins: process.env.ALLOWED_ORIGINS,
   };
 
   const result = configSchema.safeParse(raw);
