@@ -27,8 +27,9 @@ async function main(): Promise<void> {
   });
 
   await app.register(cors, {
-    origin: true,
+    origin: config.allowedOrigins,
     methods: ["GET"],
+    credentials: true,
   });
 
   await registerRoutes(app);
