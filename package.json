@@ -4,9 +4,9 @@
   "description": "Blockchain event indexer for the ChainLearn Stellar/Soroban learning platform",
   "main": "dist/index.js",
   "scripts": {
-    "build": "node init && tsc",
-    "start": "node init && node dist/index.js",
-    "dev": "node init && tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
     "migrate": "tsx src/database/migrate.ts",
     "test": "vitest run",
     "test:watch": "vitest",
